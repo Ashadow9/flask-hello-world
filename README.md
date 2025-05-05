@@ -130,7 +130,7 @@ The webhook will trigger Jenkins to start the pipeline and deploy the updated Fl
 ![image](https://github.com/user-attachments/assets/73389dd5-eed5-415f-961e-1d37b71ea844)
 
 
-#6. Verify Deployment
+## 6. Verify Deployment
 
 
 After Jenkins completes the pipeline execution, the Flask app will be running on the server or VM. You can verify the deployment by visiting http://<your-server-ip>:5000 to see the “Hello World from Jenkins!” message.
