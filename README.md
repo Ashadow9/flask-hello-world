@@ -109,3 +109,27 @@ pipeline {
 }
 
 ```
+3.Save the pipeline configuration.
+
+5. Trigger Pipeline
+Make a change to the README.md file (or any other file in the repository).
+
+Commit and push the changes to Codeberg.
+
+![image](https://github.com/user-attachments/assets/d763e8ca-15e4-495e-b8f7-6ee36db21aec)
+
+```bash
+git add .
+git commit -m "Trigger Jenkins pipeline"
+git push origin main
+```
+
+The webhook will trigger Jenkins to start the pipeline and deploy the updated Flask app.
+![image](https://github.com/user-attachments/assets/09e9aa3c-4530-464b-ad42-589b0fcf842d)
+
+![image](https://github.com/user-attachments/assets/73389dd5-eed5-415f-961e-1d37b71ea844)
+
+6. Verify Deployment
+After Jenkins completes the pipeline execution, the Flask app will be running on the server or VM. You can verify the deployment by visiting http://<your-server-ip>:5000 to see the “Hello World from Jenkins!” message.
+![image](https://github.com/user-attachments/assets/49600fab-7baf-4288-a2ac-4ecbf348de71)
+
