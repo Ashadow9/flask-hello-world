@@ -11,3 +11,12 @@ git clone https://codeberg.org/Ashadow9/flask-hello-world.git
 and go into the project directory
 ```bash
 cd flask-hello-world
+```
+2. Set Up Jenkins
+Install Jenkins on your VM. 
+
+Start Jenkins: After installation, start Jenkins by accessing http://localhost:8080 on your browser. The first time, you'll need to unlock Jenkins using the initial password:
+
+```bash
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
