@@ -163,7 +163,7 @@ After Jenkins completes the pipeline execution, the Flask app will be running on
 
 
 
-# Short Write-up – My CI/CD Approach
+# Short Write-up – Of My CI/CD Approach
 
 •For this assessment, I implemented a simple CI/CD pipeline using Jenkins and Codeberg to automatically deploy a Python Flask "Hello World" app to a server.
 
