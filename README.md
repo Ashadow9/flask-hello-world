@@ -1,5 +1,8 @@
 # flask-hello-world
 
+This project demonstrates a simple Python Flask web application deployed automatically using Jenkins CI/CD. The source code is hosted on Codeberg and the pipeline is triggered via webhook on every push.
+
+
 ## 1. Clone the Repository
 Clone this repository to your VM:
 ```bash
@@ -137,3 +140,23 @@ The webhook will trigger Jenkins to start the pipeline and deploy the updated Fl
 After Jenkins completes the pipeline execution, the Flask app will be running on the server or VM. You can verify the deployment by visiting http://<your-server-ip>:5000 to see the “Hello World from Jenkins!” message.
 ![image](https://github.com/user-attachments/assets/49600fab-7baf-4288-a2ac-4ecbf348de71)
 
+
+### Explanation of How the Automation Works
+
+Jenkins is triggered by a Codeberg webhook
+
+It pulls the latest code
+
+Creates a virtual environment using python3 -m venv
+
+Installs packages using pip install -r requirements.txt
+
+Starts the Flask app in the background with nohup
+
+Ensures clean redeployment on every commit
+
+ ### Assumptions and Notes
+
+The app runs on port 5000; reverse proxy (e.g., Nginx) is not configured
+
+The app uses nohup for background execution — consider gunicorn or supervisord for production
