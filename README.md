@@ -20,3 +20,27 @@ Start Jenkins: After installation, start Jenkins by accessing http://localhost:8
 ```bash
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
+3. Configure Webhook on Codeberg
+Go to your repository's settings on Codeberg:
+Settings → Webhooks
+
+Add a new webhook with the following details:
+
+Payload URL:```plaintext  http://<your-jenkins-server>/github-webhook/ ```
+
+Content Type: application/json
+
+Which events would you like to trigger this webhook?: Push events
+
+4. Create Jenkins Pipeline
+Create a New Item:
+
+Go to Jenkins → New Item
+
+Name: Flask-Hello-World
+
+Type: Pipeline
+
+Click OK
+
+Configure Pipeline: In the pipeline configuration page, add the following code in the pipeline script section:
