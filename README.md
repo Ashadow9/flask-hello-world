@@ -143,20 +143,66 @@ After Jenkins completes the pipeline execution, the Flask app will be running on
 
 ### Explanation of How the Automation Works
 
-Jenkins is triggered by a Codeberg webhook
+•Jenkins is triggered by a Codeberg webhook
 
-It pulls the latest code
+•It pulls the latest code
 
-Creates a virtual environment using python3 -m venv
+•Creates a virtual environment using python3 -m venv
 
-Installs packages using pip install -r requirements.txt
+•Installs packages using pip install -r requirements.txt
 
-Starts the Flask app in the background with nohup
+•Starts the Flask app in the background with nohup
 
-Ensures clean redeployment on every commit
+•Ensures clean redeployment on every commit
 
  ### Assumptions and Notes
 
-The app runs on port 5000; reverse proxy (e.g., Nginx) is not configured
+•The app runs on port 5000; reverse proxy (e.g., Nginx) is not configured
 
-The app uses nohup for background execution — consider gunicorn or supervisord for production
+•The app uses nohup for background execution — consider gunicorn or supervisord for production
+
+
+
+# Short Write-up – My CI/CD Approach
+
+•For this assessment, I implemented a simple CI/CD pipeline using Jenkins and Codeberg to automatically deploy a Python Flask "Hello World" app to a server.
+
+### My Approach:
+
+•Flask App Setup:
+
+I created a minimal Flask application with a single route returning "Hello, World!" and pushed it to a public Codeberg repository.
+
+•Jenkins Installation & Configuration:
+
+I installed Jenkins on an EC2 instance and configured it with the required plugins (Git + Pipeline). I then created a pipeline job that uses a Jenkinsfile to automate deployment.
+
+### Webhook Integration:
+
+I configured a webhook in Codeberg to trigger Jenkins on every git push, enabling automatic deployments.
+
+## Pipeline Logic (Jenkinsfile):
+
+•Clones the Codeberg repo
+
+•Ensures python3-full and venv are installed
+
+•Sets up a Python virtual environment
+
+•Installs app dependencies from requirements.txt
+
+•Starts the Flask app using nohup in the background
+
+•Kills any existing running app to ensure clean restarts
+
+### Verification:
+After each push, Jenkins automatically redeploys the latest version. I accessed the app via the server’s IP on port 5000.
+
+##  Tools Used:
+•Codeberg (Git hosting)
+
+•Jenkins (CI/CD)
+
+•Flask (Web app)
+
+•Python Virtualenv (Safe dependency management)
