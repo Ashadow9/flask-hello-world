@@ -22,11 +22,13 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 3. Configure Webhook on Codeberg
 Go to your repository's settings on Codeberg:
+
+
 Settings → Webhooks
 
 Add a new webhook with the following details:
 
-Payload URL:```plaintext  http://<your-jenkins-server>/github-webhook/ ```
+Payload URL:```http://<your-jenkins-server>/github-webhook/ ```
 
 Content Type: application/json
 
