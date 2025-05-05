@@ -33,22 +33,79 @@ Add a new webhook with the following details:
 
 Payload URL:```http://<your-jenkins-server>/github-webhook/ ```
 
-Content Type: application/json
+Content Type: ```application/json```
 
-Which events would you like to trigger this webhook?: Push events
+Which events would you like to trigger this webhook?: ```Push events```
 
 4. Create Jenkins Pipeline
 
 
 Create a New Item:
 
-Go to Jenkins → New Item
+Go to Jenkins → ``` New Item ```
 
-Name: flask-hello-world-pipeline
+Name: ```flask-hello-world-pipeline```
 
 
-Type: Pipeline
+Type: ```Pipeline```
 
-Click OK
+Click ```OK```
 
 Configure Pipeline: In the pipeline configuration page, add the following code in the pipeline script section:
+
+```bash
+
+pipeline {
+    agent any
+
+    environment {
+        REPO_URL = 'https://codeberg.org/Ashadow9/flask-hello-world.git'
+        APP_DIR = 'flask-hello-world'
+        VENV_DIR = 'venv'
+    }
+
+    stages {
+      
+
+        stage('Clone Repository') {
+            steps {
+                script {
+                    if (fileExists(APP_DIR)) {
+                        dir(APP_DIR) {
+                            sh 'git pull origin main'
+                        }
+                    } else {
+                        sh "git clone ${REPO_URL}"
+                    }
+                }
+            }
+        }
+
+        stage('Install Dependencies in Venv') {
+            steps {
+                dir(APP_DIR) {
+                    sh '''
+                        python3 -m venv venv
+                        . venv/bin/activate
+                        pip install --upgrade pip
+                        pip install -r requirements.txt
+                    '''
+                }
+            }
+        }
+
+        stage('Restart Flask App') {
+            steps {
+                dir(APP_DIR) {
+                    sh '''
+                        pkill -f app.py || true
+                        . venv/bin/activate
+                        nohup python app.py > app.log 2>&1 &
+                    '''
+                }
+            }
+        }
+    }
+}
+
+```
