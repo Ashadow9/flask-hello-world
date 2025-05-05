@@ -1,6 +1,6 @@
 # flask-hello-world
 
-1. Clone the Repository
+## 1. Clone the Repository
 Clone this repository to your VM:
 ```bash
 git clone https://codeberg.org/Ashadow9/flask-hello-world.git
@@ -12,7 +12,7 @@ and go into the project directory
 ```bash
 cd flask-hello-world
 ```
-2. Set Up Jenkins
+## 2. Set Up Jenkins
 Install Jenkins on your VM. 
 
 Start Jenkins: After installation, start Jenkins by accessing http://localhost:8080 on your browser. The first time, you'll need to unlock Jenkins using the initial password:
@@ -20,7 +20,8 @@ Start Jenkins: After installation, start Jenkins by accessing http://localhost:8
 ```bash
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
-3. Configure Webhook on Codeberg
+
+## 3. Configure Webhook on Codeberg
 
 
 Go to your repository's settings on Codeberg:
@@ -37,7 +38,7 @@ Content Type: ```application/json```
 
 Which events would you like to trigger this webhook?: ```Push events```
 
-4. Create Jenkins Pipeline
+## 4. Create Jenkins Pipeline
 
 
 Create a New Item:
@@ -111,7 +112,7 @@ pipeline {
 ```
 3.Save the pipeline configuration.
 
-5. Trigger Pipeline
+## 5. Trigger Pipeline
 Make a change to the README.md file (or any other file in the repository).
 
 Commit and push the changes to Codeberg.
